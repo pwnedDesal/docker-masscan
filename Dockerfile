@@ -17,6 +17,7 @@ RUN apt-get install -y git build-essential curl wget libpcap-dev
 # Clone masscan git repo
 RUN git clone https://github.com/robertdavidgraham/masscan /opt/masscan
 WORKDIR /opt/masscan
+RUN mkdir /opt/masscan/output
 
 # Make masscan
 RUN make -j
@@ -25,4 +26,4 @@ RUN make -j
 RUN cp /opt/masscan/bin/masscan /usr/local/bin
 
 # Launch Bash
-CMD ["/bin/bash"]
+ENTRYPOINT ["/opt/masscan/bin/masscan"]
