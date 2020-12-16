@@ -18,10 +18,10 @@ Includes:
 
 ## Users
    Runs as root user.
-   
+
 ## Volumes
    No volumes are exposed.
-   
+
 ## Ports
    No ports are exposed.
       
@@ -40,9 +40,14 @@ Includes:
 ### DISCLAIMER Don't come back to me if you get abuse reports, your ISP angry or any of that shit. Anything you do with it it's your own business. 
 ### Happy learning! :)
 
-## Other
+## Others
 docker build --tag=masscan:v1 .
 
 docker run --rm masscan:v1 -h
 with volume
 docker run --rm -v  %cd%:/opt/masscan/output masscan:v1 104.20.6.160 -p80,81 -oX /opt/masscan/output/scan.xml
+
+### with dnmasscan so you don't need to convert it into a IPs
+
+docker run --rm -v  %cd%:/opt/masscan masscan:v1 /opt/masscan/domain.txt /opt/masscan/dns.log -p80,443 -oG /opt/masscan/masscan.log
+
